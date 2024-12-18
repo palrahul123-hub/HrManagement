@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HrLeaveManagement.Domian\HrLeaveManagement.Domian.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\LeaveAllocation\Handler\" />
+    <Folder Include="Features\LeaveAllocation\Request\" />
+    <Folder Include="Features\LeaveRequest\Handler\" />
+    <Folder Include="Features\LeaveRequest\Request\" />
+    <Folder Include="Features\LeaveType\Handlers\Command\" />
+    <Folder Include="Features\LeaveType\Request\Command\" />
+  </ItemGroup>
+
+</Project>
