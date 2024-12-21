@@ -1,5 +1,4 @@
-﻿using MediatR;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace HrLeaveManagament.Application
@@ -9,7 +8,13 @@ namespace HrLeaveManagament.Application
         public static IServiceCollection ConfigureApplicationService(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddMediatR(options =>
+            {
+
+                options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+
+            });
             //services.AddAutoMapper(typeof(MappingProfiles));
 
             return services;
