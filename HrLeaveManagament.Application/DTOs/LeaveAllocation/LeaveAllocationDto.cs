@@ -1,4 +1,5 @@
 ﻿using HrLeaveManagament.Application.DTOs.Common;
+using HrLeaveManagament.Application.DTOs.LeaveType;
 
 namespace HrLeaveManagament.Application.DTOs.LeaveAllocation
 {

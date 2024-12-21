@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using HrLeaveManagament.Application.DTOs;
 using HrLeaveManagament.Application.DTOs.LeaveAllocation;
 using HrLeaveManagament.Application.DTOs.LeaveRequest;
+using HrLeaveManagament.Application.DTOs.LeaveType;
 using HrLeaveManagement.Domian;
 
 namespace HrLeaveManagament.Application.Profiles
@@ -14,6 +14,7 @@ namespace HrLeaveManagament.Application.Profiles
             CreateMap<LeaveRequest, LeaveRequestListDto>().ReverseMap();
             CreateMap<LeaveAllocation, LeaveAllocationDto>().ReverseMap();
             CreateMap<LeaveType, LeaveTypeDto>().ReverseMap();
+            CreateMap<LeaveType, CreateLeaveTypeDto>().ReverseMap();
             CreateMap<LeaveAllocation, CreateLeaveRequestDto>().ReverseMap();
             CreateMap<CreateLeaveRequestDto, LeaveRequest>().ReverseMap();
         }

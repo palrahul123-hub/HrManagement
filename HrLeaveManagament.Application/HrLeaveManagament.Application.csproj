@@ -15,11 +15,4 @@
     <ProjectReference Include="..\HrLeaveManagement.Domian\HrLeaveManagement.Domian.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\LeaveAllocations\Handler\" />
-    <Folder Include="Features\LeaveAllocations\Request\" />
-    <Folder Include="Features\LeaveRequests\Handler\Command\" />
-    <Folder Include="Features\LeaveRequests\Request\Command\" />
-  </ItemGroup>
-
 </Project>
