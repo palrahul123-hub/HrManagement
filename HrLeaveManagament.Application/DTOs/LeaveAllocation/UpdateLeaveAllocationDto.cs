@@ -2,10 +2,11 @@
 
 namespace HrLeaveManagament.Application.DTOs.LeaveAllocation
 {
-    public class UpdateLeaveAllocationDto : BaseDto
+    public class UpdateLeaveAllocationDto : BaseDto, ILeaveAllocationDto
     {
-        public int NoOfDays { get; set; }
+        public int NumberOfDays { get; set; }
         public int LeaveTypeId { get; set; }
         public int Period { get; set; }
     }
 }
+

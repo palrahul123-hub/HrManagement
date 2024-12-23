@@ -1,4 +1,5 @@
-﻿using HrLeaveManagament.Application.Features.LeaveTypes.Request.Command;
+﻿using HrLeaveManagament.Application.Exception;
+using HrLeaveManagament.Application.Features.LeaveTypes.Request.Command;
 using HrLeaveManagament.Application.Persistance.Contracts;
 using MediatR;
 
@@ -13,6 +14,9 @@ namespace HrLeaveManagament.Application.Features.LeaveTypes.Handlers.Command
         }
         public async Task Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
         {
+            var lst = await _leaveTypeRepository.GetAsync(request.Id);
+            if (lst == null)
+                throw new NotFoundException(nameof(HrLeaveManagement.Domian.LeaveType), request);
             await _leaveTypeRepository.DeleteAsync(request.Id);
         }
     }
