@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using HrLeaveManagament.Application.DTOs.LeaveRequest.Validators;
-using HrLeaveManagament.Application.Exception;
 using HrLeaveManagament.Application.Features.LeaveRequests.Request.Command;
 using HrLeaveManagament.Application.Persistance.Contracts;
+using HrLeaveManagament.Application.Responses;
 using MediatR;
 
 namespace HrLeaveManagament.Application.Features.LeaveRequests.Handler.Command
 {
-    internal class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveRequest, int>
+    internal class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveRequest, BaseResponse>
     {
         private readonly ILeaveRequestRepository _leaveRequestRepository;
         private IMapper _mapper;
@@ -16,17 +16,29 @@ namespace HrLeaveManagament.Application.Features.LeaveRequests.Handler.Command
             _leaveRequestRepository = leaveRequestRepository;
             _mapper = mapper;
         }
-        public async Task<int> Handle(CreateLeaveRequest request, CancellationToken cancellationToken)
+        public async Task<BaseResponse> Handle(CreateLeaveRequest request, CancellationToken cancellationToken)
         {
+            var baseResponse = new BaseResponse();
             var leaveRequestValidator = new CreateLeaveRequestValidator(_leaveRequestRepository);
             var validationResult = await leaveRequestValidator.ValidateAsync(request.CreateLeaveRequestDto);
             if (validationResult.IsValid)
             {
                 var leaveRequest = _mapper.Map<HrLeaveManagement.Domian.LeaveRequest>(request.CreateLeaveRequestDto);
                 var result = await _leaveRequestRepository.AddAsync(leaveRequest);
-                return result.Id;
+
+                baseResponse.Success = true;
+                baseResponse.Message = "Creation Successfull";
+                baseResponse.Id = result.Id;
             }
-            else throw new ValidationException(validationResult);
+            else
+            {
+
+                baseResponse.Success = false;
+                baseResponse.Message = "Creation Failed";
+                baseResponse.Errors = validationResult.Errors.Select(x => x.ErrorMessage).ToList();
+            };
+
+            return baseResponse;
         }
     }
 }
