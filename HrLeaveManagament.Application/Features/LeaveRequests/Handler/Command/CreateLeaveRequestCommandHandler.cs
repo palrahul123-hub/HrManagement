@@ -24,10 +24,10 @@ namespace HrLeaveManagament.Application.Features.LeaveRequests.Handler.Command
         {
             var baseResponse = new BaseResponse();
             var leaveRequestValidator = new CreateLeaveRequestValidator(_leaveRequestRepository);
-            var validationResult = await leaveRequestValidator.ValidateAsync(request.CreateLeaveRequestDto);
+            var validationResult = await leaveRequestValidator.ValidateAsync(request.createLeaveRequestDto);
             if (validationResult.IsValid)
             {
-                var leaveRequest = _mapper.Map<HrLeaveManagement.Domian.LeaveRequest>(request.CreateLeaveRequestDto);
+                var leaveRequest = _mapper.Map<HrLeaveManagement.Domian.LeaveRequest>(request.createLeaveRequestDto);
                 var result = await _leaveRequestRepository.AddAsync(leaveRequest);
 
                 baseResponse.Success = true;

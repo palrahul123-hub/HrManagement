@@ -3,7 +3,7 @@ using MediatR;
 
 namespace HrLeaveManagament.Application.Features.LeaveAllocations.Request.Query
 {
-    public class GetLeaveAllocationListRequest : IRequest<LeaveAllocationListDto>
+    public class GetLeaveAllocationListRequest : IRequest<List<LeaveAllocationListDto>>
     {
     }
 }
